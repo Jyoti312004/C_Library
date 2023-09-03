@@ -2,37 +2,7 @@
 #include<stdio.h>
 #include "generic_sort.h"
 
-
-
-// int compare_int(const void *a, const void *b) {
-//     int int_a = *((int *)a);
-//     int int_b = *((int *)b);
-    
-//     if (int_a < int_b) return -1;
-//     if (int_a > int_b) return 1;
-//     return 0;
-// }
-
-// // Generic comparison function for doubles
-// int compare_double(const void *a, const void *b) {
-//     double double_a = *((double *)a);
-//     double double_b = *((double *)b);
-    
-//     if (double_a < double_b) return -1;
-//     if (double_a > double_b) return 1;
-//     return 0;
-// }
-
-// // Generic comparison function for characters
-// int compare_char(const void *a, const void *b) {
-//     char char_a = *((char *)a);
-//     char char_b = *((char *)b);
-    
-//     if (char_a < char_b) return -1;
-//     if (char_a > char_b) return 1;
-//     return 0;
-// }
-
+// A generic function for linear search 
 void* linear_search(const void* arr, size_t total_size, size_t size, const void* target, int (*compar)(const void*, const void*)) {
   
     const char* base = arr;
@@ -50,7 +20,7 @@ void* linear_search(const void* arr, size_t total_size, size_t size, const void*
     return NULL;
 }
 
-
+// A generic function for binary search ( it works for only sorted array)
 void* binary_search(const void* arr, size_t total_size, size_t size, const void* target, int (*compar)(const void*, const void*)) {
    // printf("inside binary");
     const char* base = arr;
@@ -75,33 +45,18 @@ void* binary_search(const void* arr, size_t total_size, size_t size, const void*
     return NULL; 
     
 }
-// void* searching(const void* arr, size_t total_size, size_t size, const void* key, int (*compar)(const void*, const void*)) {
-//     int ans = -1;
-//     int flag = 0;
-//     size_t n = total_size;
 
-//     for (size_t i = 0; i < n - 1; i++) {
-//         if (compar((char*)arr + i * size, (char*)arr + (i + 1) * size) > 0) {
-//             flag = 1;
-//             break;
-//         }
-//     }
-
-//     if (flag) {
-//         return binary_search(arr, n, size, key, compar);
-//     } else {
-//         return linear_search(arr, n, size, key, compar);
-//     }
-// } 
-
+// searching function will check whether the array is sorted or not 
+// if sorted then it use binary search otherwise linear search 
 void* searching(const void* arr, size_t total_size, size_t size, const void* key, int (*compar)(const void*, const void*)) {
     int isSorted = 1;
     size_t n = total_size;
 
     for (size_t i = 0; i < n - 1; i++) {
         if (compar((char*)arr + i * size, (char*)arr + (i + 1) * size) > 0) {
+            // if the array is not sorted it will break 
             isSorted = 0;
-            break; // Array is not sorted
+            break;
         }
     }
 
