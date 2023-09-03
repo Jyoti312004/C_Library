@@ -5,7 +5,7 @@
 
 int main()
 {
-    // JYOTI
+  
     int elementDataType;
     size_t element_size;
 
@@ -16,8 +16,10 @@ int main()
     printf("\n");
     printf("Enter your choice: ");
     scanf("%d", &elementDataType);
+  // function pointer for element comparison
     int (*CompareFn)(const void *a, const void *b);
-
+    
+    // it will check the datatype and select the compare function for that 
     switch (elementDataType)
     {
     case 1:
@@ -26,6 +28,7 @@ int main()
         break;
     case 2:
         element_size = sizeof(double);
+        // if the datatype you select is integer 
         CompareFn = compare_double;
         break;
     case 3:
@@ -40,9 +43,9 @@ int main()
     int arraySize;
     printf("Enter the size of the array: ");
     scanf("%d", &arraySize);
-
+    // allocate memory to the array 
     void *userArray = malloc(element_size * arraySize);
-
+    
     printf("Enter the elements of the array separated by spaces:\n");
     for (size_t i = 0; i < arraySize; i++)
     {
@@ -66,6 +69,7 @@ int main()
         }
     }
     printf("\n");
+    // that key to be searched in an array 
     const void *key = NULL;
 
     if (elementDataType == 1)
@@ -95,6 +99,9 @@ int main()
         return 1;
     }
 
+    // searching function to search the element in an array 
+    // if the key is present in array it will print a message on screen 
+
     if (searching(userArray, arraySize, element_size, key, CompareFn))
     {
         
@@ -116,8 +123,10 @@ int main()
         printf("Key is not present\n");
     }
 
+    // it will sort the given array 
     if (elementDataType == 1 || elementDataType == 2 || elementDataType == 3)
     {
+        // choose any sorting technique you want to choose like bubble , selection sort etc 
         quick_sort(userArray, arraySize, element_size, CompareFn);
 
         printf("\nSorted array: ");
@@ -138,7 +147,7 @@ int main()
         }
         printf("\n");
     }
-
+    // maxi function helps you to find the maximum element of array
     printf("\nMaximum element of the array\n");
     void *max = NULL;
     if (elementDataType == 1)
@@ -161,7 +170,7 @@ int main()
         printf("Invalid data type.\n");
         return 1;
     }
-
+ // maxi function helps you to find the maximum element of array
     printf("\nMinimum element of the array\n");
     void *min = NULL;
     if (elementDataType == 1)
@@ -184,7 +193,7 @@ int main()
         printf("Invalid data type.\n");
         return 1;
     }
-
+    //release the allocated memory 
     free(userArray);
 
     return 0;
