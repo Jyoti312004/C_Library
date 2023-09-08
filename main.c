@@ -1,14 +1,16 @@
 #include <stdio.h>
+#include<time.h>
 #include "generic_sort.h"
 #include "c_basic.h"
 #include "searching.h"
 
 int main()
 {
-  
+    clock_t start,end;
+    double cpu_time;
     int DataType;
     size_t element_size;
-
+    start = clock();
     printf("Enter the data type of an element :\n");
     printf("1. Integer \n");
     printf("2. Double \n");
@@ -116,29 +118,6 @@ int main()
         printf("Key is not present\n");
     }
 
-    if (DataType == 1 || DataType == 2 || DataType == 3)
-    {
-        quick_sort(userArray, arraySize, element_size, Compare);
-
-        printf("\nSorted array: ");
-        for (size_t i = 0; i < arraySize; i++)
-        {
-            if (DataType == 1)
-            {
-                printf("%d ", *((int *)(userArray + i * element_size)));
-            }
-            else if (DataType == 2)
-            {
-                printf("%.2lf ", *((double *)(userArray + i * element_size)));
-            }
-            else if (DataType == 3)
-            {
-                printf("%c ", *((char *)(userArray + i * element_size)));
-            }
-        }
-        printf("\n");
-    }
-
     printf("\nMaximum element of the array\n");
     void *max = NULL;
     if (DataType == 1)
@@ -167,7 +146,7 @@ int main()
     if (DataType == 1)
     {
         min = mini(userArray, arraySize, element_size, compare_int);
-        printf("%d is the minium element \n", (*(int *)min));
+        printf("%d is the minimum element \n", (*(int *)min));
     }
     else if (DataType == 2)
     {
@@ -185,7 +164,37 @@ int main()
         return 1;
     }
 
+    if (DataType == 1 || DataType == 2 || DataType == 3)
+    {
+        quick_sort(userArray, arraySize, element_size, Compare);
+
+        printf("\nSorted array: ");
+        for (size_t i = 0; i < arraySize; i++)
+        {
+            if (DataType == 1)
+            {
+                printf("%d ", *((int *)(userArray + i * element_size)));
+            }
+            else if (DataType == 2)
+            {
+                printf("%.2lf ", *((double *)(userArray + i * element_size)));
+            }
+            else if (DataType == 3)
+            {
+                printf("%c ", *((char *)(userArray + i * element_size)));
+            }
+        }
+        printf("\n");
+    }
+
+
     free(userArray);
+
+    end = clock();
+    cpu_time = ((double)(end - start))/CLOCKS_PER_SEC;
+    printf("\n");
+    printf("CPU Time Used: %f seconds \n",cpu_time);
+    printf("\n");
 
     return 0;
 }
