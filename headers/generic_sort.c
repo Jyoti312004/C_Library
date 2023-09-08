@@ -16,16 +16,16 @@ void swap(void *a, void *b, size_t size)
     free(temp);
 }
 
-// int (*CompareFn)(const void *, const void *);
+
 
 int compare_int(const void *a, const void *b)
 {
-    int int_a = *((int *)a);
-    int int_b = *((int *)b);
+    int A = *((int *)a);
+    int B = *((int *)b);
 
-    if (int_a < int_b)
+    if (A < B)
         return -1;
-    if (int_a > int_b)
+    if (A > B)
         return 1;
     return 0;
 }
@@ -33,12 +33,12 @@ int compare_int(const void *a, const void *b)
 // function for doubles
 int compare_double(const void *a, const void *b)
 {
-    double double_a = *((double *)a);
-    double double_b = *((double *)b);
+    double A = *((double *)a);
+    double B = *((double *)b);
 
-    if (double_a < double_b)
+    if (A < B)
         return -1;
-    if (double_a > double_b)
+    if (A > B)
         return 1;
     return 0;
 }
@@ -46,12 +46,12 @@ int compare_double(const void *a, const void *b)
 //function for characters
 int compare_char(const void *a, const void *b)
 {
-    char char_a = *((char *)a);
-    char char_b = *((char *)b);
+    char A = *((char *)a);
+    char B = *((char *)b);
 
-    if (char_a < char_b)
+    if (A < B)
         return -1;
-    if (char_a > char_b)
+    if (A > B)
         return 1;
     return 0;
 }
@@ -232,5 +232,3 @@ void merge_sort(void *base, size_t total_size, size_t size, int (*compar)(const 
 {
     mergesort(base, 0, total_size - 1, size, compar);
 }
-
-
